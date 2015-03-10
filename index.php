@@ -1,9 +1,17 @@
 <html>
     <head>
-        
-    </head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            nav{
+                position: absolute;
+                left: 40%;
+            }
+        </style>
+    </head>    
     
     <body>
-        <a href="view/cadastra_usuario.php">Cadastrar usu&aacute;rio</a>
+        <?php require_once 'modulos/menu.php'; ?>
     </body>
 </html>    
