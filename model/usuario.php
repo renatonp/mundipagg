@@ -54,14 +54,14 @@ class UsuarioModel {
     
 /*******************************************************************************/
     
-    public function verificarUsuarioCadastrado($email){
+    public function verificarUsuarioCadastrado(){
         $usuario = new UsuarioController();
-        return $usuario->verificarUsuarioCadastrado($this,$email);
+        return $usuario->verificarUsuarioCadastrado($this);
     }
 
     // chamada dos métodos de manipulação com o banco de dados
-    public function cadastrarUsuario($dados_usuario){
+    public function cadastrarUsuario(){
         $usuario = new UsuarioController();
-        return $usuario->cadastrarUsuario($this,$dados_usuario);
+        return $usuario->cadastrarUsuario($this);
     }
 }

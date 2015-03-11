@@ -1,21 +1,17 @@
 <?php
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="POST"){
-    $usuario_email = explode("@", strtolower($_POST["email"]));
-    require_once '../model/usuario.php';
-    $usuario = new UsuarioModel();
-    $usuario->setEmail($_POST['email']);
-    $vet = $usuario->verificarUsuarioCadastrado();
-    if($vet["linhas"] == 0){
-        $usuario->setNome($_POST["nome"]);
-        $usuario->setEmail($_POST["email"]);
-        $usuario->setSenha($_POST["senha"]);
-        $usuario->setData(date("Y-m-d H:i:s"));
-        $vet = $usuario->cadastrarUsuario();
-        $pathname = $_SERVER["DOCUMENT_ROOT"]."/mundipagg/fotos/".$usuario_email[0];
-        if(!is_dir($pathname)){
-            mkdir($pathname,0777);
+    require_once '../model/login.php';
+    $login = new LoginModel();
+    $login->setEmail($_POST['email']);
+    $login->setSenha($_POST['senha']);
+    $vet = $login->login();
+        if($vet["linhas"] == 0){
+            $vet["msg"]="Usu&aacute;rio n&atilde;o cadastrado!";
         }
-    }
+        else{
+            header("Location: principal.php");
+            $_SESSION["usuario"] = $obj->getEmail();
+        }
 }
 ?>
 <html>
@@ -38,12 +34,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="POST"){
     <body>
         <?php require_once '../modulos/menu.php'; ?>
         <div id="cadastro" align="center">
-            <form name="formulario" id="formulario" action="cadastrar_usuario.php" method="post">
-                Nome: <input type="text" name="nome" id="nome"><br />
+            <form name="formulario" id="formulario" action="login.php" method="post">
                 E-mail: <input type="text" name="email" id="email"><br />
                 Senha: <input type="password" name="senha" id="senha"><br /><br />
                 <input type="submit" />
             </form>
+            <a href="esqueci_senha.php"><font face="verdana" size="2">esqueci minha senha</a><br /><br />
             <?=(isset($vet["msg"])?$vet["msg"]:"")?>
         </div>
     </body>

@@ -17,6 +17,7 @@ class DaoController {
         $retorno=array();
         $retorno["linhas"]=0;
         $retorno["msg"]="";
+        $retorno["sql"]=null;
 
         // conectando ao banco usando a classe PDO
         try{
@@ -29,6 +30,7 @@ class DaoController {
         
         // preparando e executando a query
         $sql = $pdo->prepare($query);
+        $retorno["sql"] = $sql;
         $sql->execute();
         $retorno["linhas"] = $sql->rowCount();
         

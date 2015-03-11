@@ -3,9 +3,8 @@ require_once '../model/usuario.php';
 require_once '../model/dao.php';
 class UsuarioController extends DaoModel {
     
-    public function verificarUsuarioCadastrado($obj,$email){
-        $msg="";
-        $query="SELECT id FROM usuarios WHERE email = '".$email."'";
+    public function verificarUsuarioCadastrado($obj){
+        $query="SELECT id FROM usuarios WHERE email = '".$obj->getEmail()."'";
         $vet = $this->execute($query);
         
         if($vet["linhas"] > 0){
@@ -15,9 +14,9 @@ class UsuarioController extends DaoModel {
     }
     
     // método de cadastro de usuário
-    public function cadastrarUsuario($obj,$dados_usuario){
+    public function cadastrarUsuario($obj){
         // formulando e executando a query
-        $query="INSERT INTO usuarios(nome,email,senha,data_cadastro) VALUES ('".$dados_usuario["nome"]."','".$dados_usuario['email']."','".$dados_usuario['senha']."','".date("Y-m-d H:i:s")."')";
+        $query="INSERT INTO usuarios(nome,email,senha,data_cadastro) VALUES ('".$obj->getNome()."','".$obj->getEmail()."','".$obj->getSenha()."','".$obj->getData()."')";
         $vet = $this->execute($query);
         $vet["msg"]="Usu&aacute;rio cadastrado com sucesso!";
         return $vet;
