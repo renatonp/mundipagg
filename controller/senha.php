@@ -17,7 +17,7 @@ class SenhaController extends DaoModel {
     }
     
     public function mandarEmail($obj){
-        return mail($obj->getEmailDestino(), $obj->getAssunto(), $obj->getMensagem(),  $this->definirHeader($obj));
-//        return true;
+//        return mail($obj->getEmailDestino(), $obj->getAssunto(), $obj->getMensagem(),  $this->definirHeader($obj));
+        return true;
     }
 }

@@ -9,8 +9,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="POST"){
             $vet["msg"]="Usu&aacute;rio n&atilde;o cadastrado!";
         }
         else{
+            $_SESSION["usuario"] = $login->getEmail();
             header("Location: principal.php");
-            $_SESSION["usuario"] = $obj->getEmail();
         }
 }
 ?>
@@ -32,7 +32,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="POST"){
         </style>
     </head>    
     <body>
-        <?php require_once '../modulos/menu.php'; ?>
+        <?php require_once '../plugin/menu.php'; ?>
         <div id="cadastro" align="center">
             <form name="formulario" id="formulario" action="login.php" method="post">
                 E-mail: <input type="text" name="email" id="email"><br />

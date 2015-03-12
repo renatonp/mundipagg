@@ -7,7 +7,7 @@ class UsuarioModel {
     private $email = null;
     private $senha = null;
     private $foto = null;
-    private $data = null;
+    private $data_cadastro = null;
     
     // getters e setters
     public function getNome(){
@@ -23,11 +23,11 @@ class UsuarioModel {
     }
     
     public function getFoto(){
-        $this->foto;
+        return $this->foto;
     }
     
     public function getData(){
-        $this->data;
+        return $this->data_cadastro;
     }
     
 /*******************************************************************************/
@@ -49,7 +49,7 @@ class UsuarioModel {
     }
     
     public function setData($data){
-        $this->data=$data;
+        $this->data_cadastro=$data;
     }
     
 /*******************************************************************************/
@@ -63,5 +63,15 @@ class UsuarioModel {
     public function cadastrarUsuario(){
         $usuario = new UsuarioController();
         return $usuario->cadastrarUsuario($this);
+    }
+    
+    public function carregarDados(){
+        $usuario = new UsuarioController();
+        return $usuario->carregarDados($this);
+    }
+    
+    public function alterarDados(){
+        $usuario = new UsuarioController();
+        return $usuario->alterarDados($this);
     }
 }

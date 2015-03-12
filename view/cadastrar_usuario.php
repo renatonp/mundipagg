@@ -1,28 +1,25 @@
-<?php
-if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="POST"){
-    $usuario_email = explode("@", strtolower($_POST["email"]));
-    require_once '../model/usuario.php';
-    $usuario = new UsuarioModel();
-    $usuario->setEmail($_POST['email']);
-    $vet = $usuario->verificarUsuarioCadastrado();
-    if($vet["linhas"] == 0){
-        $usuario->setNome($_POST["nome"]);
-        $usuario->setEmail($_POST["email"]);
-        $usuario->setSenha($_POST["senha"]);
-        $usuario->setData(date("Y-m-d H:i:s"));
-        $vet = $usuario->cadastrarUsuario();
-        $pathname = $_SERVER["DOCUMENT_ROOT"]."/mundipagg/fotos/".$usuario_email[0];
-        if(!is_dir($pathname)){
-            mkdir($pathname,0777);
-        }
-    }
-}
-?>
 <html>
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#botao_enviar").click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: $(this).parent("form").attr("action"),
+                        data:'nome='+$("#nome").val() + '&email='+$("#email").val() + '&senha='+$("#senha").val(),
+                        type: 'POST',
+                        context: jQuery('#msg'),
+                        success: function(data){
+                            this.append(data);
+                            $('#msg').html(data);
+                        }
+                    });
+                });
+            });
+        </script>
         <style type="text/css">
             nav{
                 position: absolute;
@@ -36,15 +33,15 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]=="POST"){
         </style>
     </head>    
     <body>
-        <?php require_once '../modulos/menu.php'; ?>
+        <?php require_once '../plugin/menu.php'; ?>
         <div id="cadastro" align="center">
-            <form name="formulario" id="formulario" action="cadastrar_usuario.php" method="post">
+            <form action="../dao/cadastrar_usuario.php" method="post">
                 Nome: <input type="text" name="nome" id="nome"><br />
                 E-mail: <input type="text" name="email" id="email"><br />
                 Senha: <input type="password" name="senha" id="senha"><br /><br />
-                <input type="submit" />
+                <input type="submit" id="botao_enviar" />
             </form>
-            <?=(isset($vet["msg"])?$vet["msg"]:"")?>
+            <div id="msg"></div>
         </div>
     </body>
 </html>

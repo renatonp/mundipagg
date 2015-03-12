@@ -12,6 +12,6 @@
     </head>    
     
     <body>
-        <?php require_once 'modulos/menu.php'; ?>
+        <?php require_once 'plugin/menu.php'; ?>
     </body>
 </html>
