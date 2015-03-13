@@ -28,7 +28,7 @@ class PostModel {
         return $this->tags;
     }
     
-    private function getUsuarioId(){
+    public function getUsuarioId(){
         return $this->usuario_id;
     }
 

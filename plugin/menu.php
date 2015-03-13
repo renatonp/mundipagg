@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"].'/mundipagg/model/menu.php';
 $menu = new Menu();
-if($_SERVER["REQUEST_URI"]=="/mundipagg/" || $_SERVER["REQUEST_URI"]=="/mundipagg/index.php"){
+if($_SERVER["REQUEST_URI"]=="/mundipagg/view/" || $_SERVER["REQUEST_URI"]=="/mundipagg/view/index.php" || $_SERVER["REQUEST_URI"]=="/mundipagg/index.php" || $_SERVER["REQUEST_URI"]=="/mundipagg/"){
     $menu->setCadastrarUsuario("/mundipagg/view/cadastrar_usuario.php");
     $menu->setLogin("/mundipagg/view/login.php");
     $menu->setOPcoes("<li><a href='".$menu->getCadastrarUsuario()."'>Cadastrar</a></li>;<li><a href='".$menu->getLogin()."'>Login</a></li>");
