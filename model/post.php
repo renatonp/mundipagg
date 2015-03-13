@@ -8,7 +8,9 @@ class PostModel {
     private $descricao  = null;
     private $data_post  = null;
     private $tags       = null;
-    
+    private $usuario_id = null;
+
+
     //getters e setters
     public function getTitulo(){
         return $this->titulo;
@@ -24,6 +26,10 @@ class PostModel {
     
     public function getTags(){
         return $this->tags;
+    }
+    
+    private function getUsuarioId(){
+        return $this->usuario_id;
     }
 
     /**************************************************************************/
@@ -44,7 +50,11 @@ class PostModel {
         $this->tags = $tags;
     }
     
-    // chamada aos métodos principais
+    public function setUsuarioId($usuario_id){
+       $this->usuario_id  = $usuario_id;
+    }
+
+        // chamada aos métodos principais
     public function inserirPost(){
         $post = new PostController();
         return $post->inserirPost($this);

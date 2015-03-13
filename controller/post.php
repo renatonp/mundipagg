@@ -15,7 +15,7 @@ class PostController extends DaoModel {
     }
     
     public function carregarPosts($obj){
-        $query="SELECT * FROM posts";
+        $query="SELECT * FROM posts WHERE usuario_id = ".$obj->getUsuarioId();
         return $this->execute($query);
     }
 }

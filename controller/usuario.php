@@ -25,7 +25,7 @@ class UsuarioController extends DaoModel {
     
     public function carregarDados($obj){
         // formulando e executando a query caregando os dados do banco
-        $query="SELECT nome, email, foto FROM usuarios WHERE email = '".$obj->getEmail()."'";
+        $query="SELECT id, nome, email, foto FROM usuarios WHERE email = '".$obj->getEmail()."'";
         return $vet = $this->execute($query);
     }
     

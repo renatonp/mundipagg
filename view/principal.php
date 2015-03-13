@@ -39,6 +39,7 @@ if(isset($_SESSION["usuario"])){
     if($vet_usuario['linhas'] > 0){
         while($resultado = $vet_usuario["sql"]->fetch(PDO::FETCH_ASSOC)){
             $usuario->setFoto($resultado["foto"]);
+            $usuario->setId($resultado["id"]);
         }
     }
     ?>
@@ -57,6 +58,7 @@ if(isset($_SESSION["usuario"])){
                         $post->setDescricao($resultado["descricao"]);
                         $post->setTags($resultado["tags"]);
                         $post->setDataPost($resultado["data_post"]);
+                        $post->setUsuarioId($usuario->getId());
                 ?>
                 <table>
                     <tr height="35">
