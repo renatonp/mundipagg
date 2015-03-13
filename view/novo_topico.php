@@ -9,37 +9,41 @@
                     event.preventDefault();
                     $.ajax({
                         url: $(this).parent("form").attr("action"),
-                        data:'email='+$("#email").val(),
+                        data:'titulo='+$("#titulo").val() + '&tags='+$("#tags").val() + '&descricao='+$("#descricao").val(),
                         type: 'POST',
                         context: jQuery('#msg'),
                         success: function(data){
                             this.append(data);
                             $('#msg').html(data);
-                            $("#email").val("");
                         },
                     });
                 });
             });
         </script>        
         <style type="text/css">
-            nav{
-                position: absolute;
-                left: 45%;
-            }
             #cadastro{
                 position: absolute;
-                left: 37%;
-                top:50px;
+                left: 30%;
+                top:75px;
+            }
+            #menu{
+                position: absolute;
+                left: 670px;
             }
         </style>
-    </head>    
+    </head>
+            
     <body>
-        <?php require_once '../plugin/menu.php'; ?>
+        <div id="menu">
+            <?php require_once '../plugin/menu.php'; ?>
+        </div>
         <div id="cadastro" align="center">
-            Informe seu e-mail abaixo para enviarmos sua senha:<br /><br />
-            <form action="../dao/esqueci_senha.php" method="post">
-                E-mail: <input type="text" name="email" id="email"><br /><br />
-                <input type="submit" id="botao_enviar" value="Enviar Senha" />
+            <form action="../dao/novo_topico.php" method="post">
+                T&iacute;tulo: <input type="text" name="titulo" id="titulo" value="Digite o t&iacute;tulo do post aqui" onfocus="this.value=''"><br />
+                Tags<input type="text" name="tags" id="tags" value="Digite as tags para o seu post aqui" onfocus="this.value=''"><br />
+                Escreva as tags separadas por v&iacute;rgula<br /><br />
+                Conte&uacute;do:<br /><textarea name="descricao" id="descricao" rows="25" cols="90" onfocus="this.value=''">Escreva aqui a sua publica&ccedil;&atilde;o</textarea><br /><br />
+                <input type="submit" id="botao_enviar" />
             </form>
             <div id="msg"></div>
         </div>

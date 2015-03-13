@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/login.php';
+require_once '../controller/login.php';  // carrega os dados da classe LoginController
 class LoginModel {
     
     // declaração dos atributos da classe
