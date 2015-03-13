@@ -7,24 +7,16 @@
             $(document).ready(function(){
                 $("#botao_enviar").click(function(event) {
                     event.preventDefault();
-                    if($("#nome").val() != "" && $("#email").val() != "" && $("#senha").val() != ""){
-                        $.ajax({
-                            url: $(this).parent("form").attr("action"),
-                            data:'nome='+$("#nome").val() + '&email='+$("#email").val() + '&senha='+$("#senha").val(),
-                            type: 'POST',
-                            context: jQuery('#msg'),
-                            success: function(data){
-                                this.append(data);
-                                $('#msg').html(data);
-                                $("#nome").val("");
-                                $("#email").val("");
-                                $("#senha").val("");
-                            }
-                        });
-                    }
-                    else{
-                        alert("Todos os campos devem ser preenchidos!")
-                    }
+                    $.ajax({
+                        url: $(this).parent("form").attr("action"),
+                        data:'nome='+$("#nome").val() + '&email='+$("#email").val() + '&senha='+$("#senha").val(),
+                        type: 'POST',
+                        context: jQuery('#msg'),
+                        success: function(data){
+                            this.append(data);
+                            $('#msg').html(data);
+                        }
+                    });
                 });
             });
         </script>

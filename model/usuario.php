@@ -7,7 +7,6 @@ class UsuarioModel {
     private $email = null;
     private $senha = null;
     private $foto = null;
-    private $caminho_foto;
     private $data_cadastro = null;
     
     // getters e setters
@@ -27,11 +26,7 @@ class UsuarioModel {
         return $this->foto;
     }
     
-    public function getCaminhoFoto(){
-        return $this->caminho_foto;
-    }
-
-        public function getData(){
+    public function getData(){
         return $this->data_cadastro;
     }
     
@@ -53,17 +48,12 @@ class UsuarioModel {
         $this->foto=$foto;
     }
     
-    public function setCaminhoFoto($caminho_foto){
-        $this->caminho_foto = $caminho_foto;
-    }
-
-        public function setData($data){
+    public function setData($data){
         $this->data_cadastro=$data;
     }
     
 /*******************************************************************************/
     
-    // chamada aos métodos principais
     public function verificarUsuarioCadastrado(){
         $usuario = new UsuarioController();
         return $usuario->verificarUsuarioCadastrado($this);

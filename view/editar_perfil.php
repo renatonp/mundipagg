@@ -3,7 +3,6 @@ session_start();
 if(isset($_SESSION["usuario"])){
     require_once '../model/usuario.php';
     $usuario = new UsuarioModel();
-    $usuario->setEmail($_SESSION['usuario']);
     $vet = $usuario->carregarDados();
     if($vet['linhas'] > 0){
         while($resultado = $vet["sql"]->fetch(PDO::FETCH_ASSOC)){
@@ -15,7 +14,26 @@ if(isset($_SESSION["usuario"])){
 <html>
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){              
+                $("#botao_enviar").click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: $(this).parent("form").attr("action"),
+                        data:'nome='+$("#nome").val() + '&email='+$("#email").val() + '&senha='+$("#senha").val() + '&confirmarsenha='+$("#confirmarsenha").val() + '&foto='+$("#foto").val(),
+                        type: 'POST',
+                        context: jQuery('#msg'),
+                        success: function(data){
+                            this.append(data);
+                            $('#msg').html(data);
+                            window.setTimeout(function() { $('#msg').html(""); }, 5000);
+                        },
+                    });
+                });
+            });
+        </script>
         <style type="text/css">
             nav{
                 position: absolute;

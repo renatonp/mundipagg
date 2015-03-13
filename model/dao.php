@@ -1,5 +1,5 @@
 <?php
-require_once '../controller/dao.php'; // carrega os dados da classe DaoController
+require_once '../controller/dao.php';
 class DaoModel {
     
     // declaração dos atributos da classe

@@ -28,15 +28,11 @@ elseif($_SERVER["REQUEST_URI"]=="/mundipagg/view/editar_perfil.php"){
     $menu->setPost("/mundipagg/view/novo_topico.php");
     $menu->setLogout("/mundipagg/view/logout.php");
     $menu->setOPcoes("<li><a href='".$menu->getPrincipal()."'>Inicio</a></li>;<li><a href='".$menu->getPost()."'>Novo T&oacute;pico</a></li>;<li><a href='".$menu->getLogout()."'>Sair</a></li>;");
+    
 }
 elseif($_SERVER["REQUEST_URI"]=="/mundipagg/view/esqueci_senha.php"){
     $menu->setLogin("/mundipagg/view/login.php");
     $menu->setOPcoes("<li><a href='".$menu->getLogin()."'>Login</a></li>");
-}
-elseif($_SERVER["REQUEST_URI"]=="/mundipagg/view/novo_topico.php"){
-    $menu->setPrincipal("/mundipagg/view/principal.php");
-    $menu->setLogout("/mundipagg/view/logout.php");
-    $menu->setOPcoes("<li><a href='".$menu->getPrincipal()."'>Inicio</a></li>;<li><a href='".$menu->getLogout()."'>Sair</a></li>;");
 }
 $opcoes = explode(';', $menu->getOpcoes());
 ?>
