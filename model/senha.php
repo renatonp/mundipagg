@@ -52,6 +52,7 @@ class SenhaModel {
         $this->mensagem = $mensagem;
     }
 
+    // chamada aos métodos principais
     public function enviarSenha(){
         $senha = new SenhaController();
         return $senha->enviarSenha($this);
