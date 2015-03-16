@@ -12,7 +12,6 @@ if($vet["linhas"] == 0){
     $usuario->setSenha($_POST["senha"]);
     $usuario->setData(date("Y-m-d H:i:s"));
     $vet = $usuario->cadastrarUsuario(); // cadastra o usuário no site
-    echo $vet["msg"]; // mostra a mensagem ao usuário
     $pathname = $_SERVER["DOCUMENT_ROOT"]."/mundipagg/fotos/".$usuario_email[0]; //define uma pasta para o usuário
     // se a pasta em questão não existir, a mesma é criada
     if(!is_dir($pathname)){

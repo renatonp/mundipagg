@@ -2,13 +2,14 @@
 session_start();
 if(isset($_SESSION["usuario"])){
     require_once '../model/usuario.php';
-    $usuariomodel = new UsuarioModel();
-    $usuariomodel->setEmail($_SESSION['usuario']);
-    $vet = $usuariomodel->carregarDados();
+    $usuario = new UsuarioModel();
+    $usuario->setEmail($_SESSION['usuario']);
+//    $usuario->setEmail("rnpenna@gmail.com");
+    $vet = $usuario->carregarDados();
     if($vet['linhas'] > 0){
         while($resultado = $vet["sql"]->fetch(PDO::FETCH_ASSOC)){
-            $usuariomodel->setNome($resultado["nome"]);
-            $usuariomodel->setEmail($resultado["email"]);
+            $usuario->setNome($resultado["nome"]);
+            $usuario->setEmail($resultado["email"]);
         }
     }
 ?>
@@ -32,8 +33,8 @@ if(isset($_SESSION["usuario"])){
         <?php require_once '../plugin/menu.php'; ?>
         <div id="cadastro" align="center">
             <form action="../dao/editar_perfil.php" method="post"  enctype="multipart/form-data">
-                Nome: <input type="text" name="nome" id="nome" value="<?=$usuariomodel->getNome()?>"><br />
-                E-mail: <input type="text" name="email" id="email" value="<?=$usuariomodel->getEmail()?>"><br />
+                Nome: <input type="text" name="nome" id="nome" value="<?=$usuario->getNome()?>"><br />
+                E-mail: <input type="text" name="email" id="email" value="<?=$usuario->getEmail()?>"><br />
                 Senha: <input type="password" name="senha" id="senha"><br />
                 Confirmar Senha: <input type="password" name="confirmarsenha" id="confirmarsenha"><br />
                 Foto: <input type="file" name="foto" id="foto"><br />

@@ -4,8 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/view/index.php</file>
-            <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/controller/post.php</file>
-            <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/model/post.php</file>
+            <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/model/usuario.php</file>
+            <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/dao/editar_perfil.php</file>
+            <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/dao/novo_topico.php</file>
+            <file>file:/C:/Program%20Files%20(x86)/EasyPHP-DevServer-14.1VC11/data/localweb/mundipagg/controller/usuario.php</file>
         </group>
     </open-files>
 </project-private>

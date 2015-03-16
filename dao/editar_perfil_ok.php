@@ -2,29 +2,29 @@
 // inicia a sessão no site
 session_start();
 require_once '../model/usuario.php'; // carrega o conteúdo da classe de apoio
-$usuariomodel = new UsuarioModel(); // define o objeto da clase UsuarioModel
+$usuario = new UsuarioModel(); // define o objeto da clase UsuarioModel
 
 // seta as variáeis da classe
-$usuariomodel->setNome($_POST["nome"]);
-$usuariomodel->setEmail($_POST["email"]);
-$usuariomodel->setFoto($_FILES["foto"]['name']);
-$usuariomodel_email = explode("@", $usuariomodel->getEmail()); // pega o usuário de e-mail do usuário do site
-$usuariomodel->setCaminhoFoto($_SERVER["DOCUMENT_ROOT"]."/mundipagg/fotos/".$usuariomodel_email[0]);
+$usuario->setNome($_POST["nome"]);
+$usuario->setEmail($_POST["email"]);
+$usuario->setFoto($_FILES["foto"]['name']);
+$usuario_email = explode("@", $usuario->getEmail()); // pega o usuário de e-mail do usuário do site
+$usuario->setCaminhoFoto($_SERVER["DOCUMENT_ROOT"]."/mundipagg/fotos/".$usuario_email[0]);
 $erro=0; // cria e define a vari[avel de controle "erro"
 
 // se senha e confirmarsenha forem iguais, seta a senha do usuário
 // se forem diferentes, alerta ao usuário
 if($_POST['senha']==$_POST['confirmarsenha']){
-    $usuariomodel->setSenha($_POST['senha']);
+    $usuario->setSenha($_POST['senha']);
     $msg="";
 }
 else{
     $msg="<br />Sua senha n&atilde;o foi alterada pois elas n&atilde;o conferem";
 }
 
-$vet = $usuariomodel->alterarDados(); // faz a alteração dos dados
+$vet = $usuario->alterarDados(); // faz a alteração dos dados
 
-$pasta = $usuariomodel->getCaminhoFoto(); // define o caminho para onde a foto será mandada
+$pasta = $usuario->getCaminhoFoto(); // define o caminho para onde a foto será mandada
 $tamanho = 5*1024*1024; // define o tamanho máximo da foto 5MB
 $extensoes =  array('jpg', 'png', 'gif'); // define as extensões permitidas para o arquivo
 $extensao = explode('.', strtolower($_FILES['foto']['name'])); // pega a extensão do arquivo de upload

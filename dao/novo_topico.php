@@ -4,15 +4,15 @@ session_start();
 require_once '../model/post.php';
 require_once '../model/usuario.php';
 
-$usuario = new UsuarioModel(); // define o objeto da clase UsuarioModel
+$usuariomodel = new UsuarioModel(); // define o objeto da clase UsuarioModel
 $post = new PostModel(); // define o objeto da clase PostModel
 
-$usuario->setEmail($_SESSION["usuario"]);
-$vet = $usuario->carregarDados();
+$usuariomodel->setEmail($_SESSION["usuario"]);
+$vet = $usuariomodel->carregarDados();
 if($vet["linhas"] > 0){
     while($resultado = $vet["sql"]->fetch(PDO::FETCH_ASSOC)){
-        $usuario->setId($resultado['id']);
-        $post->setUsuarioId($usuario->getId());
+        $usuariomodel->setId($resultado['id']);
+        $post->setUsuarioId($usuariomodel->getId());
     }
 }
 
